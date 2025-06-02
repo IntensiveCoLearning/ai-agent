@@ -24,4 +24,7 @@ voidpainter
 
 ### 2025.07.12
 
+读了Language Agents: Foundations, Prospects, and Risks (Slides)
+概览agent的历史，基于大语言模型的agent在推理、表达、适应方面都优于以往的agent
+
 <!-- Content_END -->

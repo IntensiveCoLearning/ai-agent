@@ -67,6 +67,30 @@ evaluation
 
 # 2025.06.03
 
+## Reasoning
+
+* [Tree of Thoughts](https://arxiv.org/pdf/2305.10601)
+
+Current shortcoming of LM solving general problems
+1. Locally, they do not explore different continuations within a thought process (the branches of the tree)
+2. Globally, they do not incorporate any type of planning, lookahead, or backtracking to help evaluate these different
+options (the kind of heuristic-guided search that seems characteristic of human problem-solving)
+
+Structure of ToT
+
+1. How to **decompose** the intermediate process into thought steps; 
+2. How to **generate** potential thoughts from each state; 
+3. How to heuristically **evaluate** states; 
+4. What **search** algorithm to use.
+
+Search Algorithm
+
+1. ToT-BFS
+2. ToT-DFS
+
+> ToT is like giving GPT-4 a whiteboard 
+> and saying “think out loud, explore branches, 
+> score them yourself, then pick the best line of reasoning.”
 
 
 

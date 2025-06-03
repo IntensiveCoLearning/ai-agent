@@ -29,8 +29,22 @@ timezone: UTC+8
   - 不過講者也提醒，光有 LLM 仍不足；要真正成為 agent，需要記憶、規劃、對多模態感知的整合，甚至要面對安全與社會影響等風險。這意味著未來不只要學 prompt，還要懂基礎 AI、倫理、以及怎麼把各種 API 串在一起，才能打造負責任的語言代理人。
 ---
 ### 2025.06.02
+[ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)
+- **傳統方法問題**：
+  - 「推理（Reasoning）」與「行動（Acting）」以前是**獨立處理**。
+  - 只有推理：容易「幻覺」（捏造事實）且無外部驗證。
+  - 只有行動：缺乏策略與目標導向的思考。
 
+- **ReAct 要做的**：
+  - 模擬人類的「邊想邊做」。
+  - 模型能交錯進行**自然語言推理**與**任務操作**。
 ### 2025.06.03
+[Tree of Thoughts: Deliberate Problem Solving with Large Language Models](https://arxiv.org/abs/2305.10601)
+- Tree of Thoughts
+  - 一種**推理結構框架**，讓 LLM 像搜尋樹狀結構般展開推理。
+  - 每個「節點」是一個 Thought（想法）。
+  - 多個 Thought 組成一條思路（path）。
+  - 可以設定評估策略來篩選、修剪或擴展思路。
 
 ### 2025.06.04
 

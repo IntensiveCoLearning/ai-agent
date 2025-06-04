@@ -197,9 +197,10 @@ Telegram：https://t.me/LXDAO/24843
 | [Bitpeng-YT](https://github.com/IntensiveCoLearning/ai-agent/blob/main/Bitpeng-YT.md) | ✅ | ✅ | ✅ |   | | | | | | | | | | | | | | | | | |
 | [CHENFANGC](https://github.com/IntensiveCoLearning/ai-agent/blob/main/CHENFANGC.md) | ⭕️ | ⭕️ | ⭕️ |   | | | | | | | | | | | | | | | | | |
 | [fffuuuming](https://github.com/IntensiveCoLearning/ai-agent/blob/main/fffuuuming.md) | ✅ | ✅ | ⭕️ |   | | | | | | | | | | | | | | | | | |
-| [nocb](https://github.com/IntensiveCoLearning/ai-agent/blob/main/nocb.md) | ✅ | ⭕️ | ⭕️ |   | | | | | | | | | | | | | | | | | |
+| [nocb](https://github.com/IntensiveCoLearning/ai-agent/blob/main/nocb.md) | ✅ | ✅ | ⭕️ |   | | | | | | | | | | | | | | | | | |
 | [voidpainter](https://github.com/IntensiveCoLearning/ai-agent/blob/main/voidpainter.md) | ⭕️ | ✅ | ⭕️ |   | | | | | | | | | | | | | | | | | |
 <!-- END_COMMIT_TABLE -->
+
 
 
 

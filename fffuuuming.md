@@ -80,4 +80,20 @@ Motivation:
     - Nodes: states, which is a partial solution (input + current thoughts).
     - Branches: possible next thoughts.
 
+### 2025.06.05
+LLM+P
+---
+Motivation:
+
+- LLMs are excellent at **linguistic competence**: generating plausible, fluent text, but struggle with **functional competence**, especially on tasks requiring **long-horizon reasoning** like symbolic planning.
+- LLMs do not internally reason with formal models of the world (e.g., they don’t “know” physics, constraints, or state transitions).
+- Instead of retraining or fine-tuning LLMs LLM+P **leverages classical planners**, which are built to solve such problems optimally and reliably—and **using LLMs for natural language translation between humans and planners**
+    > LLM is an **interface** with the classical planner.
+
+Mechanism:
+![截圖 2025-06-06 凌晨2.20.07](https://hackmd.io/_uploads/S1sygP17eg.png)
+- **Context**: Example problem & PDDL for in-context learning
+- **Domain PDDL**: Provides a lifted representation of the **underlying rules of the world**, including a set of predicates that define the **state space S** and the **actions (i.e., A )** with their **preconditions** and **effects (i.e., the transition function f )**
+- **Problem PDDL**: provides a list of objects to ground the domain, the problem’s initial state and goal conditions which comes from original natural language prompt (Problem)
+- 
 <!-- Content_END -->

@@ -67,7 +67,16 @@ timezone: UTC+8
 * 分類器準確率在 54% 左右，但仍能顯著提升整體 QA 系統效能。
 * 若使用 Oracle 分類器（完美分類），效能可再上升。
 ### 2025.06.05
-
+[LLM+P: Empowering Large Language Models with Optimal Planning Proficiency](https://arxiv.org/abs/2304.11477)
+- 讓LLM學會「規劃」，例如分成幾步驟完成一個任務，而不是只會亂試或講一堆話。
+- 抽象化（Abstraction）
+  - 狀態（目前情況）
+  - 行動（可以做的動作）
+  - → 用 LLM 自動產出 PDDL 格式（像任務語言）。
+- 規劃（Planning）
+  - 把「任務格式」丟給一個專門會規劃的 AI 工具（Planner）
+- 實體化（Instantiation）
+  - 用 LLM 把 Planner 給的行動步驟變成自然語言，讓人或機器可以執行。
 ### 2025.06.06
 
 ### 2025.06.07

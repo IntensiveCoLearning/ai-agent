@@ -95,5 +95,5 @@ Mechanism:
 - **Context**: Example problem & PDDL for in-context learning
 - **Domain PDDL**: Provides a lifted representation of the **underlying rules of the world**, including a set of predicates that define the **state space S** and the **actions (i.e., A )** with their **preconditions** and **effects (i.e., the transition function f )**
 - **Problem PDDL**: provides a list of objects to ground the domain, the problem’s initial state and goal conditions which comes from original natural language prompt (Problem)
-- 
+
 <!-- Content_END -->

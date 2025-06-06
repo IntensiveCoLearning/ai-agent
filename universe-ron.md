@@ -78,6 +78,20 @@ timezone: UTC+8
 - 實體化（Instantiation）
   - 用 LLM 把 Planner 給的行動步驟變成自然語言，讓人或機器可以執行。
 ### 2025.06.06
+[Language Agent Tree Search Unifies Reasoning Acting and Planning in Language Models](https://arxiv.org/abs/2310.04406)
+- 結合三種能力
+  - 推理（Reasoning）
+  - 行動（Acting）
+  - 規劃（Planning）
+- LATS 就像是讓語言模型「思考後再行動」，流程如下：
+  1. **產生行動選項**  
+    - 模型先想出幾個可能的下一步（例如：要先查什麼資料？）
+  2. **展開樹狀選擇（Tree Search）**
+    - 像玩西洋棋一樣，預測每個選擇可能帶來的結果。
+  3. **評估每個分支**  
+    - 用語言模型判斷哪一條路最有可能成功完成任務。
+  4️. **選擇最佳行動**  
+    - 依照評估結果，選出最好的下一步。
 
 ### 2025.06.07
 

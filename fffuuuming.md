@@ -96,4 +96,14 @@ Mechanism:
 - **Domain PDDL**: Provides a lifted representation of the **underlying rules of the world**, including a set of predicates that define the **state space S** and the **actions (i.e., A )** with their **preconditions** and **effects (i.e., the transition function f )**
 - **Problem PDDL**: provides a list of objects to ground the domain, the problem’s initial state and goal conditions which comes from original natural language prompt (Problem)
 
+### 2025.06.06
+[LATS: general framework unifying reasoning, acting, and planning in LLMs](https://arxiv.org/abs/2310.04406)
+
+A combination of ReAct + ToT, with advanced **Monte Carlo Tree Search (MCTS)**
+- Searches over combinations of actions and reasoning.
+- Uses feedback from the environment.
+- **Self-reflects** on failures to improve future attempts.
+- Deliberately plans using **MCTS** with **LM value scoring**.
+
+
 <!-- Content_END -->

@@ -93,6 +93,18 @@ Search Algorithm
 > score them yourself, then pick the best line of reasoning.”
 
 
+# 2025.06.04
+
+[REACT: SYNERGIZING REASONING AND ACTING IN LANGUAGE MODELS](https://arxiv.org/pdf/2210.03629)
+
+* reason + act
+
+
+# 2025.06.05
+
+[LLM Reasoners: New Evaluation, Library, and Analysis of Step-by-Step Reasoning with Large Language Models](https://arxiv.org/abs/2404.05221)
+
+
 
 
 <!-- Content_END -->

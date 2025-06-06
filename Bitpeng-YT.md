@@ -62,7 +62,7 @@ timezone: UTC+8
 ### 2025.06.02
 
 笔记内容
-今天学习论文 《How Far Are We From AGI: Are LLMs All We Need?》 的第2、3两节，AGI 的内部结构和 AGI 的接口
+今天学习论文 《How Far Are We From AGI: Are LLMs All We Need?》 的第 2、3 两节，AGI 的内部结构和 AGI 的接口
 
 - **论文整体结构**
   - 核心 AGI 组件的讨论：涵盖 AGI 内部（§ 2）、AGI 接口（§ 3）和 AGI 系统（§ 4）
@@ -81,6 +81,27 @@ timezone: UTC+8
   - 智能接口
   
 ### 2025.06.03
+
+笔记内容
+今天学习论文 《How Far Are We From AGI: Are LLMs All We Need?》 的第 4 节，AGI 系统
+
+- **AGI 系统**
+  - 系统挑战（System Challenges）
+      - 讨论构建完整 AGI 系统时面临的关键障碍：如多模态融合（整合文本、图像、音频等不同模态数据）、长期记忆存储、动态决策能力等。
+      - 重点关注如何设计能同时处理认知、推理和行动的统一框架。
+
+  - 可扩展模型架构（Scalable Model Architectures）
+      - 分析支持 AGI 规模的神经网络架构：如 Transformer 变体（支持万亿参数级）、MoE（Mixture of Experts）架构等。
+      - 强调架构需具备动态扩展能力，能通过新增模块灵活应对新任务。
+  - 大规模训练（Large-scale Training）
+      - 技术重点：分布式训练（如 Megatron-LM、DeepSpeed 框架）、梯度优化算法、灾难性遗忘缓解。
+      - 数据策略：跨领域预训练、自监督学习、合成数据生成。
+  - 推理技术（Inference Techniques）
+      - 核心方法：思维链（CoT）、程序辅助推理（Program-aided Reasoning）、神经符号系统。
+      - 优化方向：降低延迟（如模型量化）、提升多步推理稳定性。
+  - 成本与效率（Cost and Efficiency）
+      - 量化 AGI 系统开发的资源需求：千卡级 GPU 集群、PB 级数据、百万美元级训练成本。
+      - 探讨模型压缩（蒸馏 / 剪枝）和硬件协同设计（如 TPUv5）的优化路径。
 
 ### 2025.06.04
 

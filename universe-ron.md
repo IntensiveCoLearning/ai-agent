@@ -47,9 +47,36 @@ timezone: UTC+8
   - 可以設定評估策略來篩選、修剪或擴展思路。
 
 ### 2025.06.04
+[Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity](https://arxiv.org/abs/2403.14403)
+1. 提出 Adaptive-RAG 架構
+- 根據查詢複雜度，自動選擇下列三種策略之一：
+  - A 類（No Retrieval）→ LLM 直接回答。
+  - B 類（Single-step Retrieval）→ 一次檢索後回答。
+  - C 類（Multi-step Retrieval）→ 多次檢索並推理。
 
+2. 設計輕量級查詢分類器（Classifier）
+- 自動判斷查詢的複雜度（A/B/C）。
+- 使用少量標註資料（結合模型預測結果與資料集偏差）自動生成訓練資料。
+
+3. 兼顧準確率與效率
+- 對於簡單問題節省資源，對於複雜問題保證答案正確性。
+- 效能顯著優於現有方法（如 Self-RAG、Adaptive Retrieval 等）。
+
+* 在 6 個 QA 資料集（SQuAD, NQ, TriviaQA, MuSiQue, HotpotQA, 2WikiMultiHopQA）上進行測試。
+* 與 GPT-3.5、FLAN-T5-XL/XXL 等模型搭配使用，Adaptive-RAG 在 F1、EM、Acc 準確度上均表現最好，同時比多步推理快。
+* 分類器準確率在 54% 左右，但仍能顯著提升整體 QA 系統效能。
+* 若使用 Oracle 分類器（完美分類），效能可再上升。
 ### 2025.06.05
-
+[LLM+P: Empowering Large Language Models with Optimal Planning Proficiency](https://arxiv.org/abs/2304.11477)
+- 讓LLM學會「規劃」，例如分成幾步驟完成一個任務，而不是只會亂試或講一堆話。
+- 抽象化（Abstraction）
+  - 狀態（目前情況）
+  - 行動（可以做的動作）
+  - → 用 LLM 自動產出 PDDL 格式（像任務語言）。
+- 規劃（Planning）
+  - 把「任務格式」丟給一個專門會規劃的 AI 工具（Planner）
+- 實體化（Instantiation）
+  - 用 LLM 把 Planner 給的行動步驟變成自然語言，讓人或機器可以執行。
 ### 2025.06.06
 
 ### 2025.06.07

@@ -58,4 +58,42 @@ Simple comparison
 **Question**
 1. what does sub-optimal greedy decoding procedure mean ? and how does decoding method affect the reasoning
 
+### 2025.06.04
+---
+Motivation:
+- CoT: Linear sequence — from input → [thought₁, thought₂, …, thoughtₙ] → answer.
+    - left-to-right generation without exploration.
+    - If any step fails early (bad thought), the rest of the chain collapses.
+- CoT-SC: Samples multiple CoT chains and chooses the most frequent answer
+    - Still linear: No branching or backtracking -> **non-strategic**
+
+[**Tree of Thought**](https://arxiv.org/abs/2305.10601):  generalizes CoT by introducing **structured exploration** and **planning over thoughts**.
+- Workflow
+    1.	**Thought Decomposition**: Define meaningful intermediate steps.
+	2.	**Thought Generation**: Generate multiple candidate thoughts at each step.
+	3.	**Evaluation**: Heuristically rate or vote on thoughts using the LM itself.
+	4.	Search Strategy:
+	    - **BFS**: Explore top-k best thoughts at each level.
+	    - **DFS**: Follow promising path, backtrack if stuck.
+	5.	**Final Answer**: Choose best solution from the search tree.
+- Tree structure: 
+    - Nodes: states, which is a partial solution (input + current thoughts).
+    - Branches: possible next thoughts.
+
+### 2025.06.05
+LLM+P
+---
+Motivation:
+
+- LLMs are excellent at **linguistic competence**: generating plausible, fluent text, but struggle with **functional competence**, especially on tasks requiring **long-horizon reasoning** like symbolic planning.
+- LLMs do not internally reason with formal models of the world (e.g., they don’t “know” physics, constraints, or state transitions).
+- Instead of retraining or fine-tuning LLMs LLM+P **leverages classical planners**, which are built to solve such problems optimally and reliably—and **using LLMs for natural language translation between humans and planners**
+    > LLM is an **interface** with the classical planner.
+
+Mechanism:
+![截圖 2025-06-06 凌晨2.20.07](https://hackmd.io/_uploads/S1sygP17eg.png)
+- **Context**: Example problem & PDDL for in-context learning
+- **Domain PDDL**: Provides a lifted representation of the **underlying rules of the world**, including a set of predicates that define the **state space S** and the **actions (i.e., A )** with their **preconditions** and **effects (i.e., the transition function f )**
+- **Problem PDDL**: provides a list of objects to ground the domain, the problem’s initial state and goal conditions which comes from original natural language prompt (Problem)
+
 <!-- Content_END -->

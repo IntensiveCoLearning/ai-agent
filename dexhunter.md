@@ -225,7 +225,9 @@ In summary, **LLM Reasoners is innovative because it moves the field from a coll
 
 [HippoRAG: Neurobiologically Inspired Long-Term Memory for Large Language Models](https://arxiv.org/abs/2405.14831)
 
+# 2025.06.07
 
+[Cognitive Architectures for Language Agents](https://arxiv.org/abs/2309.02427)
 
 
 <!-- Content_END -->

@@ -128,6 +128,41 @@ timezone: UTC+8
 
 ### 2025.06.07
 
+- [ToolLLM](https://arxiv.org/abs/2307.16789): 让 LLM 掌握 16,000+真实 API
+
+  - **核心思想**：ToolLLM 旨在通过系统化的训练和评估框架，使开源大语言模型（如 LLaMA）具备调用大量真实世界 RESTful API 的能力，从而缩小与闭源模型（如 ChatGPT）在工具使用方面的差距。
+
+  - **ToolBench 数据集构建**：
+
+    - 收集了 16,464 个来自 RapidAPI Hub 的 RESTful API，涵盖 49 个类别。
+    - 利用 ChatGPT 生成多样化的自然语言指令，涉及单工具和多工具场景。
+    - 使用 ChatGPT 搜索每个指令的有效解决路径（API 调用链）。
+
+  - **DFSDT 算法**：提出了基于深度优先搜索的决策树算法，增强了模型的推理能力，能够评估多种推理路径并扩展搜索空间。
+
+  - **ToolEval 评估器**：开发了自动化评估器 ToolEval，用于评估 LLM 的工具使用能力。
+
+  - **ToolLLaMA 模型训练**：在 ToolBench 上微调 LLaMA 模型，结合神经 API 检索器，为每个指令推荐合适的 API。
+
+  * 示例项目：https://github.com/OpenBMB/ToolBench
+
+- [Gorilla](https://openreview.net/forum?id=tBRNC6YemY) ：连接大规模 API 的大语言模型
+
+  - **核心思想**：Gorilla 是一个基于 LLaMA 微调的模型，结合文档检索系统，旨在提升 LLM 在调用大规模、频繁更新的 API 时的准确性和适应性。
+
+  - **Retriever-Aware Training（RAT）**：引入检索感知训练方法，使模型在训练时考虑检索器可能带来的不准确性，从而增强模型对检索文档的鲁棒性。
+
+  - **APIBench 数据集**：构建了一个包含 HuggingFace、TorchHub 和 TensorHub 等平台 API 的综合数据集，用于评估模型的 API 调用能力。
+
+  - **AST 匹配评估**：使用抽象语法树（AST）匹配方法，首次量化了 LLM 在生成 API 调用时的幻觉程度。
+
+  - **双模式推理**：
+
+    - **零样本模式**：模型直接根据用户的自然语言指令生成 API 调用。
+    - **检索模式**：模型结合最新的 API 文档进行推理，适应频繁变化的 API。
+
+  * 示例项目：https://github.com/ShishirPatil/gorilla
+
 ### 2025.06.08
 
 ### 2025.06.09

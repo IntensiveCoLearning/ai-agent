@@ -119,7 +119,7 @@ timezone: UTC+8
 
 ### 2025.06.08
 [HippoRAG: Neurobiologically Inspired Long-Term Memory for Large Language Models](https://arxiv.org/abs/2405.14831)
-HippoRAG 是一種新的記憶架構，模仿人腦記憶系統中的「海馬迴（hippocampus）」來幫助大型語言模型（LLM）更有效記住與整合新知識。
+- HippoRAG 是一種新的記憶架構，模仿人腦記憶系統中的「海馬迴（hippocampus）」來幫助大型語言模型（LLM）更有效記住與整合新知識。
 #### 雙階段流程：
 
 ##### Offline Indexing（離線建立知識圖）

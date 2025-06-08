@@ -105,5 +105,74 @@ A combination of ReAct + ToT, with advanced **Monte Carlo Tree Search (MCTS)**
 - **Self-reflects** on failures to improve future attempts.
 - Deliberately plans using **MCTS** with **LM value scoring**.
 
+### 2025.06.08
+[Cognitive Architectures for Language Agents](https://arxiv.org/abs/2309.02427)
+---
+Language Models as **Probabilistic Production Systems**:
+- Traditional production systems use rule like `"X Y Z → X W Z"` -> **fixed**, **rule based**
+- LLM defines a **probability distribution** over which productions to select when presented with input X, yielding a distribution `P(Yi|X)` over possible completions -> probabilistic **production systems that sample a possible completion each time they are called**, e.g., `X ∼∼▸ X Y`
+    - opaqueness: LLMs consist of billions of uninterpretable parameters with inherent randomness from their probabilistic formulation
+    - advantage: scale and pre-training
+
+Prompt Engineering as **Control Flow**
+- In traditional production system, control flow chooses **which rule to apply**
+- LLMs use prompt engineering to influence the behavior of the model.
+
+Towards **cognitive language agents**
+Cognitive agents **place LLMs in a loop with memory and world interaction** — not just one-way text generation.
+
+---
+Cognitive Language Agents using a structured framework with 
+1. Memory
+2. Action Space
+3. Decision making
+
+| Memory Type | What it stores | Example Use |
+| -------- | -------- | -------- |
+| Working  | Temporary task state         | Goals, latest inputs, LLM outputs         |
+| Episodic | Past experiences         | What happened before         |
+| Semantic | General knowledge         | World facts, inferred rules         |
+| Procedural| How to do things     | Code, prompt templates, LLM weights     |
+
+**Action Space**
+- **External** (Grounding): Interact with outside world (E.g., move robot arm, click webpage button, talk to a user)
+    - Physical environments
+    - Dialogue with humans or other agents
+    - Digital environments
+- **Internal**
+    - Retrieval: Read from long-term memory
+	- Reasoning: Use LLM to think and update working memory
+	- Learning: process the contents of working memory to generate new information and writes back to working memory, reasoning can be used to support learning (by writing the results into long-term memory) or decision-making (by using the results as additional context for subsequent LLM calls).
+
+**Decision making**
+In each cycle, program code defines a sequence of reasoning and retrieval actions to propose and evaluate alternatives (**planning stage**), then executes the selected action (**execution stage**) – then the cycle loops again.
+- Planning stage:
+    - Proposal: use reasoning / retrieval to sample one / more external grounding actions from the LLM
+    - Evaluation: assigns a value to proposed actions, based on heuristic rules / LLM values / LLM reasoning...
+    - Selection: selects one to execute or rejects them and loops back to the proposal step
+- Execution: executing the relevant procedures from the agent’s source code, it can be either external grounding action (e.g., an API call) or an internal learning action (e.g. write to episodic memory). an observation can be made from the environment, providing feedback from the agent’s action, and the cycle loops again.
+---
+A simple comparison of previous work based on CoALA framework
+
+🔍 Agent Summary Table
+| Agent               | Memory Used                                 | Internal Actions                  | External Actions       | Decision-Making Strategy                          | Notable Characteristics                     |
+|---------------------|----------------------------------------------|-----------------------------------|------------------------|---------------------------------------------------|----------------------------------------------|
+| **SayCan**          | ✅ Procedural (LLM + value function)         | ❌ None                           | ✅ Physical robot actions | Evaluate all possible actions using LLM + value net | LLM used as evaluator, not planner           |
+| **ReAct**           | ❌ None                                       | ✅ Reasoning                      | ✅ Digital (e.g., API)   | Single LLM step: think → act                       | Simplest reasoning+acting loop               |
+| **Voyager**         | ✅ Procedural + Episodic + Semantic          | ✅ Reason, Retrieve, Learn        | ✅ Digital (Minecraft)  | Multi-step loop with goal checking & code updates | Learns new skills over time                  |
+| **Generative Agents** | ✅ Episodic + Semantic                      | ✅ Reason, Retrieve, Learn        | ✅ Social / digital env | Plans daily schedule, adapts plans on the fly     | Social simulation + memory reflection        |
+| **Tree of Thoughts** | ❌ None                                       | ✅ Reasoning                      | ✅ Final output only     | Tree search (propose → evaluate → select)         | Structured deliberation, no memory           |
+
+---
+🧭 Feature Comparison Table
+
+| Dimension           | SayCan | ReAct | Voyager | Generative Agents | Tree of Thoughts |
+|--------------------|--------|-------|---------|-------------------|------------------|
+| Long-term Memory   | ✅     | ❌    | ✅      | ✅                | ❌               |
+| Internal Actions   | ❌     | ✅    | ✅      | ✅                | ✅               |
+| External Actions   | ✅     | ✅    | ✅      | ✅                | ✅ (final output)|
+| Learning           | ❌     | ❌    | ✅      | ✅                | ❌               |
+| Structured Planning| ❌     | ❌    | ✅      | ✅                | ✅               |
+
 
 <!-- Content_END -->

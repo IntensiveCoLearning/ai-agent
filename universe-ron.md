@@ -94,8 +94,43 @@ timezone: UTC+8
     - 依照評估結果，選出最好的下一步。
 
 ### 2025.06.07
+[Cognitive Architectures for Language Agents](https://arxiv.org/abs/2309.02427)
+#### 記憶系統（Memory）
+語言代理人像人一樣，有：
+- **短期記憶**：目前正在處理的事情。
+- **長期記憶**：分成三種：
+  - 程序記憶（如何做事）
+  - 語意記憶（知道什麼）
+  - 情節記憶（做過什麼）
+#### 行動空間（Actions）
+分成兩類：
+- **外部行動**：與外界互動（查資料、控制機器人、說話）
+- **內部行動**：像是
+  - 推理（Reasoning）
+  - 讀資料（Retrieval）
+  - 學習（Learning）
+#### 決策流程（Decision-Making）
+代理人會進行一個「思考 → 選擇行動 → 執行 → 再觀察」的循環。  
+在每一輪，它會：
+- 從記憶中讀資料
+- 進行推理
+- 決定下一步做什麼
+
 
 ### 2025.06.08
+[HippoRAG: Neurobiologically Inspired Long-Term Memory for Large Language Models](https://arxiv.org/abs/2405.14831)
+HippoRAG 是一種新的記憶架構，模仿人腦記憶系統中的「海馬迴（hippocampus）」來幫助大型語言模型（LLM）更有效記住與整合新知識。
+#### 雙階段流程：
+
+##### Offline Indexing（離線建立知識圖）
+- 用語言模型從文本中抽出「主詞、動詞、受詞」的知識三元組。
+- 建立一個知識圖譜（KG），像是「誰做了什麼事」。
+
+##### Online Retrieval（線上查資料）
+- 使用 Personalized PageRank（個人化網頁排名）演算法，根據使用者的問題去圖中找出最相關的知識節點。
+- 這個步驟可以一次找出跨段落的關聯（也就是 multi-hop reasoning），更快更準確。
+
+> HippoRAG 讓語言模型像人腦一樣能記住事物間的關聯，提升「長期記憶」與「多步推理」能力。
 
 ### 2025.06.09
 

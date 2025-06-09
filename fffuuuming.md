@@ -174,5 +174,36 @@ A simple comparison of previous work based on CoALA framework
 | Learning           | ❌     | ❌    | ✅      | ✅                | ❌               |
 | Structured Planning| ❌     | ❌    | ✅      | ✅                | ✅               |
 
+### 2025.06.08
+[TOOLLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs](https://arxiv.org/abs/2307.16789)
+---
+**Motivation**
+- Current open source LLMs (e.g., LLaMA) limited using external tools (APIs) to fulfill human instructions. The reason is that **current instruction tuning largely focuses on basic language tasks but ignores the tool-use domain**.
+- Even with previous work on building instruction tuning data for tool use, they fail to fully stimulate the tool-use capabilities within LLMs and have inherent limitations: **limitTeodol APIs**, **constrained scenario** (instructions that only involve one single tool), and **inferior planning and reasoning:** (error propagation, exploration)
 
+**ToolLLM: a general tool-use framework**
+- Data construction: **ToolBench**
+- Model training: **ToolLLaMA**
+- Evaluation: **ToolEval**
+
+Framework overview
+![截圖 2025-06-10 凌晨12.16.46](https://hackmd.io/_uploads/HkSZFK47xe.png)
+
+**Dataset Construction**
+1. **API collection**: Using **RapidAPI**
+    - All APIs inside can be classified into 49 **coarse-grained categories** or **fine-grained categorization collections**
+    - Since each tool may be composed of multiple APIs, for each tools, record its important metadata and all of its available APIs, then for each API, collect all info of the API, which serves as a valuable resource for LLMs to understand and effectively use the APIs
+    - Perform filtering to retain high-quality tool
+2. **Instruction Generation**
+Maintain two properties: **diversity** & **multi-tool usage** by sampling different combinations of APIs and craft various instructions that involve them.
+    - Given total API set $\mathbb{S}_{API}$, sample a subset $\mathbb{S}^{sub}_{N}$ = $\{API_1 , · · · , API_N\}$
+    - Prompt ChatGPT to understand the functionalities
+of these APIs and then generate **possible instructions** and **relevant APIs** -> **(instruction, relevant API) pair** will be used for **training the API retriever**
+        - **Inst∗** involve APIs in $\mathbb{S}^{sub}_{N}$
+        -  $\mathbb{S}^{rel}_∗ \subset\mathbb{S}^{sub}_N$) -> $\{[\mathbb{S}^{rel}_1, Inst_1],· · ·, [\mathbb{S}^{rel}_{N^{'}}, Inst_{N^{'}}]\}$
+    - Sampling Strategies:
+        - **Single-tookl instruction (I1)**: iterate over each tool and generate instructions for its APIs
+        - **multi-tool instructions**: randomly select 2-5 tools from the same category / collection and sample at most 3 APIs from each tool to generate the instructions -> **intra-category (I2)**, **intra-collection (I3)**
+    - filter those with the hallucinated relevant APIs by assessing whether they exist in $\mathbb{S}^{sub}_{N}$
+3. **Solution Path Annotation**
 <!-- Content_END -->

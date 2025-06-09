@@ -229,5 +229,12 @@ In summary, **LLM Reasoners is innovative because it moves the field from a coll
 
 [Cognitive Architectures for Language Agents](https://arxiv.org/abs/2309.02427)
 
+# 2025.06.08
+
+[LLM+P: Empowering Large Language Models with Optimal Planning Proficiency](https://arxiv.org/abs/2304.11477)
+
+# 2025.06.09
+
+[Language Agent Tree Search Unifies Reasoning Acting and Planning in Language Models](https://arxiv.org/abs/2310.04406)
 
 <!-- Content_END -->

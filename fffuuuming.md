@@ -174,7 +174,7 @@ A simple comparison of previous work based on CoALA framework
 | Learning           | ❌     | ❌    | ✅      | ✅                | ❌               |
 | Structured Planning| ❌     | ❌    | ✅      | ✅                | ✅               |
 
-### 2025.06.08
+### 2025.06.09
 [TOOLLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs](https://arxiv.org/abs/2307.16789)
 ---
 **Motivation**

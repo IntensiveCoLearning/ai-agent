@@ -237,4 +237,8 @@ In summary, **LLM Reasoners is innovative because it moves the field from a coll
 
 [Language Agent Tree Search Unifies Reasoning Acting and Planning in Language Models](https://arxiv.org/abs/2310.04406)
 
+# 2025.06.10
+
+[Eyes Wide Shut? Exploring the Visual Shortcomings of Multimodal LLMs](https://arxiv.org/abs/2401.06209)
+
 <!-- Content_END -->

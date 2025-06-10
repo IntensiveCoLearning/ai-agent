@@ -206,6 +206,16 @@ of these APIs and then generate **possible instructions** and **relevant APIs** 
         - **multi-tool instructions**: randomly select 2-5 tools from the same category / collection and sample at most 3 APIs from each tool to generate the instructions -> **intra-category (I2)**, **intra-collection (I3)**
     - filter those with the hallucinated relevant APIs by assessing whether they exist in $\mathbb{S}^{sub}_{N}$
 3. **Solution Path Annotation**
+    - **Multi-round conversation**:
+Given **Inst∗**, we prompt ChatGPT to search for a valid action sequence $\{a_1 , · · · , a_N\}$ -> $ChatGPT(a_t|{a_1, r_1, · · · , a_{t−1}, r_{t−1}}, Inst_∗)$
+        - $r_∗$: real API response.
+        - $a_t$: `“Thought: · · · , API Name: · · · , Parameters: · · · ”`
+    - **GPT's function call feature**: Treat each API as a special function and feed its API documentation into ChatGPT’s function field
+        - For each **Inst∗**, feed all the sampled APIs $\mathbb{S}^{sub}_{N}$ to ChatGPT’s as available N functions
+        - Define two functions `Finish with Final Answer` and `Finish by Giving Up` to finish an action sequence
+    - **DFDST**: To solve the **error propagation** & **limited exploration**
+        - allows the model to assess different reasoning paths and choose to either **(1) proceed along a promising path** or **(2) abandon an existing node by calling the “Finish by Giving Up” function and expand a new node**
+        - During node expansion, to diversify the child nodes and expand the search space, we **prompt ChatGPT with the information of the previously generated nodes and explicitly encourage the model to generate a distinct node**
 
 ### 2025.06.10
 [Gorilla: Large Language Model Connected with Massive APIs](https://openreview.net/forum?id=tBRNC6YemY)

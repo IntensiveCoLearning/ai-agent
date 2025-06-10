@@ -206,4 +206,40 @@ of these APIs and then generate **possible instructions** and **relevant APIs** 
         - **multi-tool instructions**: randomly select 2-5 tools from the same category / collection and sample at most 3 APIs from each tool to generate the instructions -> **intra-category (I2)**, **intra-collection (I3)**
     - filter those with the hallucinated relevant APIs by assessing whether they exist in $\mathbb{S}^{sub}_{N}$
 3. **Solution Path Annotation**
+
+### 2025.06.10
+[Gorilla: Large Language Model Connected with Massive APIs](https://openreview.net/forum?id=tBRNC6YemY)
+---
+General Framework
+![截圖 2025-06-10 下午5.59.48](https://hackmd.io/_uploads/HJ6QGKrXgx.png)
+
+**APIBench**: using HuggingFace, Torch Hub, and TensorFlow Hub
+1. **API Documentation**: Aftere collection, convert the model cards for each of these 1,645 API calls into a JSON object for **better generalization** beyond API calls within the ML domain, to other domains, fields described below:
+    ```
+    {domain, framework, functionality, api_name, api_call, api_arguments, environment_requirements, example_code, performance, description}
+    ```            
+2. **Instruction Generation**: self-instruct paradigm
+    -  6 hand-written example pairs (**instruction + API call**) for each of the 3 API sources for **in-context learning**
+    -  For each of the above 1,645 real API entries, ask GPT-4 to generate 10 new instruction + API pairs, using the examples as templates.
+    -  No using actual name of the API while writing instructions
+3. **API Call with Constraints**
+    - Incorporate instructions that have constraints (e.g. `parameter size`, ` lower bound on accurac` for ML-based API calls) in training dataset.
+    - ex: Invoke an image classification model that uses less than 10M parameters, but maintains an ImageNet accuracy of at least 70%
+    -  Not only must the LLM understand the user’s functional description, but it also needs to **reason about the various constraints embedded within the request**
+
+**Gorilla**
+Use above {instruction, API} pairs
+- **Retriever-Aware training (RAT)**
+Since retrieved documentation is not necessarily accurate -> **RAT teach the LLM to ‘judge’ the retriever at inference time**, if retrieved API document
+    - relevant to the user’s prompt: use the API documentation to respond to the user’s question
+    - isn't relevant: trained model isn't distracted by irrelevant context. LLM then **relies on the domain-specific knowledge baked-in during RAT training**, to provide the user with the relevant API
+- **Gorilla Inference**
+In retrieval mode, the retriever first retrieves the most up-to-date API documentation stored in the API Database and **concatenat it to the user prompt** along with the message “Use this API documentation for reference, **no further prompt tuning**
+Ex :
+    ```
+    “Use this API documentation for reference: <retrieved_API_doc_JSON>”
+    ```
+- **AST Sub-Tree Matching**
+![截圖 2025-06-10 晚上9.35.28](https://hackmd.io/_uploads/rkGhEnBXle.png)
+
 <!-- Content_END -->

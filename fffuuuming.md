@@ -287,7 +287,7 @@ Train a classifier to choose among 3 modes above: $\mathbf{A}$, $\mathbf{B}$, $\
 
 How to construct dataset ?
 1. **Predicted outcomes**: 
-Labeling the query complexity based on the results from three different retrieval-augmented LLM strategies, e.g. assign the label to the approach which correctly generates the answer among $\{\mathbf{A}, \mathbf{B}, \mathbf{C}\}$, breaking tie with a higher priority to a simpler model
+Labeling the query complexity based on the results from three different retrieval-augmented LLM strategies, e.g. assign the label to the approach which correctly generates the answer among {$\mathbf{A}, \mathbf{B}, \mathbf{C}$}, breaking tie with a higher priority to a simpler model
 2. **Inherent inductive biases in datasets**
 For those queries that remain `unlabeled` after the first labeling step, we assign $\mathbf{B}$, to queries in single-hop datasets and $\mathbf{C}$, to queries in multi-hop datasets
     - The three retrieval-augmented approaches may all fail to generate the correct answer

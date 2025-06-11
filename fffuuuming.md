@@ -257,7 +257,7 @@ Ex :
 ---
 
 **Motivation**:
-In real world, queries complexity may vary, so it's not suitable to just use non-retrieval, single-step, multi-steps retrieval retrieval-augmented LLMs
+In real world, queries complexity may vary, so it's not suitable to just use either non-retrieval, single-step, multi-steps retrieval retrieval-augmented LLMs
 
 **Solution**:
 Propose **Adaptive-RAG**: Adaptive QA framework that can dynamically select the most suitable strategy for (retrieval-augmented) LLMs from the simplest to the most sophisticated ones based on the query complexity

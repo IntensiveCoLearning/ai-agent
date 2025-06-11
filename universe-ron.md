@@ -143,5 +143,49 @@ timezone: UTC+8
 - 適用於多種需要人類通過語言解決的任務
 
 ### 2025.06.10
+[Eyes Wide Shut? Exploring the Visual Shortcomings of Multimodal LLMs](https://arxiv.org/abs/2401.06209)
+- HippoRAG 是一種新的記憶架構，模仿人腦記憶系統中的「海馬迴（hippocampus）」來幫助 LLM 更有效記住與整合新知識
+- 現在的語言模型記憶力差，只能靠查資料（RAG）來補充，但效率和準確度都不夠好
+- 真正的記憶系統應該能「累積經驗」、「連結舊知識」，並在需要時快速提取
+- **大腦的海馬迴**能幫助我們把不同知識連起來，從少量線索中找到答案
+- HippoRAG 仿照這個結構，把資料轉成「知識圖譜（Knowledge Graph）」來記住知識之間的關係
+- 用 LM 從文本中抽出「主詞、動詞、受詞」的知識三元組
+- 建立一個知識圖譜（KG），像是「誰做了什麼事」
+- 使用 Personalized PageRank（個人化網頁排名）演算法，根據使用者的問題去圖中找出最相關的知識節點
+- 這個步驟可以一次找出跨段落的關聯（也就是 multi-hop reasoning），更快更準確
+
+### 2025.06.11
+[VisualWebArena: Evaluating Multimodal Agents on Realistic Visually Grounded Web Tasks](https://arxiv.org/html/2401.13649v2)
+- 雖然 GPT-4V、Gemini 等多模態大語言模型（MLLM）能看圖說話，但作者發現它們在處理**簡單圖片問題時常犯錯**。
+- 這篇論文想了解：為什麼這些模型「看圖不準」？
+- 很多 MLLM 都依賴 **CLIP** 做圖像理解，但 CLIP 會把**長得很不一樣的圖片看成一樣**。  
+- 這些錯誤被叫做 **CLIP-blind pairs**。
+- 作者用這些錯誤圖片對製作了一個評估工具叫做：
+- → **MMVP 基準測試**，包含許多簡單的視覺問答題（像是「狗是面向左還是右？」）
+- 作者提出一種方法叫 **Mixture of Features (MoF)**：
+  - 把 CLIP 的圖像特徵與另一種模型（DINOv2）的特徵混在一起用。
+  - 有兩種方法：
+    - Additive-MoF：直接把兩者加起來
+    - Interleaved-MoF：空間交錯混合
+
+### 2025.06.12
+
+### 2025.06.13
+
+### 2025.06.14
+
+### 2025.06.15
+
+### 2025.06.16
+
+### 2025.06.17
+
+### 2025.06.18
+
+### 2025.06.19
+
+### 2025.06.20
+
+### 2025.06.21
 
 <!-- Content_END -->

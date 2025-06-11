@@ -241,4 +241,8 @@ In summary, **LLM Reasoners is innovative because it moves the field from a coll
 
 [Eyes Wide Shut? Exploring the Visual Shortcomings of Multimodal LLMs](https://arxiv.org/abs/2401.06209)
 
+# 2025.06.11
+
+[VisualWebArena: Evaluating Multimodal Agents on Realistic Visually Grounded Web Tasks](https://arxiv.org/html/2401.13649v2)
+
 <!-- Content_END -->

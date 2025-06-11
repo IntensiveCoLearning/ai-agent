@@ -252,4 +252,43 @@ Ex :
 - **AST Sub-Tree Matching**
 ![截圖 2025-06-10 晚上9.35.28](https://hackmd.io/_uploads/rkGhEnBXle.png)
 
+### 2025.06.11
+[Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity](https://arxiv.org/abs/2403.14403)
+---
+
+**Motivation**:
+In real world, queries complexity may vary, so it's not suitable to just use non-retrieval, single-step, multi-steps retrieval retrieval-augmented LLMs
+
+**Solution**:
+Propose **Adaptive-RAG**: Adaptive QA framework that can dynamically select the most suitable strategy for (retrieval-augmented) LLMs from the simplest to the most sophisticated ones based on the query complexity
+
+**Mechanism Overview**:
+Train a classifier which is a smaller LM, to predict the complexity level of incoming queries with automatically collected labels obtained from **actual predicted outcomes of models** and **inherent inductive biases in datasets**
+
+---
+**Previous Method**
+1. Non Retrieval for QA: $\mathbf{\bar{a}} = \mathrm{LLM}(\mathbf{q})$
+    - $\mathbf{x} = [x_1, x_2, ..., x_n]$, $\mathbf{y} = [y_1, y_2, ..., y_n]$
+    - $\mathbf{y} = \mathrm{LLM}(\mathbf{x})$
+    - In problem setup for QA: $\mathbf{q} = \mathbf{x}$, $\mathbf{\bar{a}} = \mathbf{y}$
+2. Single-step Approach for QA: $\mathbf{\bar{a}} = \mathrm{LLM}(\mathbf{q}, \mathbf{d})$
+    - Incorporate external knowledge $\mathbf{d}$ from the external knowledge source $\mathrm{D}$ via retriever
+    - $\mathbf{d} = \mathrm{Retriever}(\mathbf{q}; \mathrm{D})$
+3. Multi-steps Approach for QA: $\mathbf{\bar{a_i}} = \mathrm{LLM}(\mathbf{q}, \mathbf{d_i}, \mathbf{c_i})$
+    - The process begins with the initial query $\mathbf{q}$, and at every retrieval step i, new documents $\mathbf{d_i}$ are retrieved from $\mathrm{D}$ and then incorporated into the input of LLMs
+    - $\mathbf{d_i} = \mathrm{Retriever}(\mathbf{q}, \mathbf{c_i}; \mathrm{D})$
+    - $\mathbf{c_i}$: Additional context, can be composed of previous documents and outcomes: $(\mathbf{d_1}, \mathbf{d_2}, ..., \mathbf{d_{i-1}}, \mathbf{\bar{a_1}}, \mathbf{\bar{a_2}}, ..., \mathbf{\bar{a_{i-1}}})$ (depends on the implementation of LLMs)
+    - By interacting with Retriever like this in several rounds, LLMs progressively refining its understanding of $\mathbf{q}$, until it formulates the final answer from findings accumulated across these multiple steps
+---
+**Adaptive-RAG**: $\mathrm{o} = \mathrm{Classifier}(\mathbf{q})$
+Train a classifier to choose among 3 modes above: $\mathbf{A}$, $\mathbf{B}$, $\mathbf{C}$ labels for non-retrieval, single-step and multi-steps
+
+How to construct dataset ?
+1. **Predicted outcomes**: 
+Labeling the query complexity based on the results from three different retrieval-augmented LLM strategies, e.g. assign the label to the approach which correctly generates the answer among $\{\mathbf{A}, \mathbf{B}, \mathbf{C}\}$, breaking tie with a higher priority to a simpler model
+2. **Inherent inductive biases in datasets**
+For those queries that remain `unlabeled` after the first labeling step, we assign $\mathbf{B}$, to queries in single-hop datasets and $\mathbf{C}$, to queries in multi-hop datasets
+    - The three retrieval-augmented approaches may all fail to generate the correct answer
+    - The benchmark datasets may already have **meaningful inductive biases** about the most appropriate retrieval-augmented LLM strategies for their queries
+    - 
 <!-- Content_END -->

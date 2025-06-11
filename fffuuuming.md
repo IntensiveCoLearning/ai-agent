@@ -257,7 +257,7 @@ Ex :
 ---
 
 **Motivation**:
-In real world, queries complexity may vary, so it's not suitable to just use either non-retrieval, single-step, multi-steps retrieval retrieval-augmented LLMs
+In real world, queries complexity may vary, so it's not suitable to just use either non-retrieval, single-step, or multi-steps retrieval retrieval-augmented LLMs
 
 **Solution**:
 Propose **Adaptive-RAG**: Adaptive QA framework that can dynamically select the most suitable strategy for (retrieval-augmented) LLMs from the simplest to the most sophisticated ones based on the query complexity
@@ -281,6 +281,8 @@ Train a classifier which is a smaller LM, to predict the complexity level of inc
     - By interacting with Retriever like this in several rounds, LLMs progressively refining its understanding of $\mathbf{q}$, until it formulates the final answer from findings accumulated across these multiple steps
 ---
 **Adaptive-RAG**: $\mathrm{o} = \mathrm{Classifier}(\mathbf{q})$
+
+
 Train a classifier to choose among 3 modes above: $\mathbf{A}$, $\mathbf{B}$, $\mathbf{C}$ labels for non-retrieval, single-step and multi-steps
 
 How to construct dataset ?

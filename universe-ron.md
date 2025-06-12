@@ -165,12 +165,36 @@ timezone: UTC+8
 - 作者提出一種方法叫 **Mixture of Features (MoF)**：
   - 把 CLIP 的圖像特徵與另一種模型（DINOv2）的特徵混在一起用。
   - 有兩種方法：
-    - Additive-MoF：直接把兩者加起來
+    - Additive-MoF：直接把兩者加起來2
     - Interleaved-MoF：空間交錯混合
 
 ### 2025.06.12
+[AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation Framework](https://huggingface.co/papers/2308.08155)
+- AutoGen 是一個由微軟開源的框架，可以讓你建立「多個 AI 代理人（Agents）」互相聊天、合作來完成任務。  
+- 這些代理人可以是 LLM（像 GPT）、人類、工具或它們的組合。
+- 用「聊天流程」設計任務解法
+- 可以用自然語言 + 程式語言混合控制對話流程
+- 支援動態聊天，不用每次都固定對話順序
 
 ### 2025.06.13
+[Corrective Retrieval-Augmented Generation](https://arxiv.org/pdf/2401.15884)
+- 大語言模型（LLM）有時會「幻想」（捏造錯誤資訊），  
+- 即使加了查資料（RAG）也不一定正確，因為查到的內容可能是錯的。
+- 所以這篇論文提出一種改進方法叫 **CRAG**，  
+- 可以**檢查資料是不是錯的，然後自己修正**。
+- CRAG 增加了 3 個功能：
+  - 評估器（Retrieval Evaluator）  
+    - → 幫你看「查到的資料對不對」  
+    - → 分成三種情況：✅正確 / ❌錯誤 / 🤔不確定
+  - 自動修正策略  
+    - 如果是正確的 → 精煉資料，只留下重點
+    - 如果是錯的 → 去網路搜尋新資料（用 Google Search API）
+    - 如果不確定 → 兩者都用（保險做法）
+  - 精煉方法（Knowledge Refinement）  
+    - → 把查到的長篇資料切成小段，只留下最有用的部分給模型看
+- 不需要換模型，只要「外掛」CRAG 就能讓結果變準
+- 還會自己去網路查資料，不再死守舊資料
+- 可以和現有的 RAG 或 Self-RAG 模型搭配使用
 
 ### 2025.06.14
 

@@ -9,6 +9,7 @@ timezone: UTC+8
 2. 你认为你会完成本次残酷学习吗？盡力
 3. 你的联系方式（推荐 Telegram）@fffuuuming
 
+[HACKMD LINK](https://hackmd.io/@BKuxYlL0T6iT9rROj2QldQ/B1HNk87Mle)
 ## Notes
 
 <!-- Content_START -->
@@ -292,5 +293,56 @@ Labeling the query complexity based on the results from three different retrieva
 For those queries that remain `unlabeled` after the first labeling step, we assign $\mathbf{B}$, to queries in single-hop datasets and $\mathbf{C}$, to queries in multi-hop datasets
     - The three retrieval-augmented approaches may all fail to generate the correct answer
     - The benchmark datasets may already have **meaningful inductive biases** about the most appropriate retrieval-augmented LLM strategies for their queries
-    - 
+
+### 2025.06.12
+[Corrective Retrieval Augmented Generation](https://arxiv.org/pdf/2401.15884)
+---
+**Motivation**:
+Current LLMs have **hallucinations** occur since either
+- The accuracy of generated texts cannot be secured solely by the parametric knowledge they encapsulate
+- Even with RAG, they rely heavily on the **relevance of retrieved documents**
+
+**Solution**: **C**orrective **R**etrieval **A**ugmented **G**eneration (**CRAG**)
+Self-correct the results of retriever and improve the utilization of documents for augmenting generation
+
+How ?
+Use a light weight **retrieval evaluator** to assess the overall quality of retrieved documents for a query, returning **confidence degree** based on which different knowledge retrieval actions can be triggered, with downstream **decompose-then-recompose** refinement & **large-scale web searches**
+
+**Advantage**:
+- plug-and-play, which can be integrated into other off-the-shell models such as **RAG**, **self-RAG**
+---
+**Method Overview**
+![截圖 2025-06-12 晚上9.32.39](https://hackmd.io/_uploads/SyBfvLd7gx.png)
+----
+**Retrieval Evaluator: Is this retrieved document relevant to the question?**
+Fine-tuned a lightweight model **T5-large** to score how relevant a document is to a question.
+
+Contrastive learning:
+- **Positive examples (relevant)**: Use high-quality passages linked to questions (e.g., from PopQA dataset).
+- **Negative examples (irrelevant)**: Use similar-looking but unrelated documents.
+
+For each questions $x$, there are generally 10 documents retrieved $\{d_1, d_2, ..., d_k\}$, $\mathrm{score_i}$ = retrieval evaluator evaluates the relevance of each pair $(x, d_i)$, $d_i ∈ D$
+$\mathrm{Confidence}$ = Calculate and give a final judgment based on $\{\mathrm{score_1}, \mathrm{score_2}, ...\mathrm{score_k}\}$
+
+
+---
+**Action Trigger**
+Based on the aforementioned confidence score for each retrieved document, three types of actions are designed and triggered accordingly where the upper and lower thresholds are set.
+- **Correct**: The confidence score of at least one retrieved document is higher than the upper threshold
+    - Even if a relevant document can be found, there is inevitably **some noisy knowledge strips** in this document
+    - To extract the most critical knowledge strips within this document, a **knowledge refinement**
+- **InCorrect**: The confidence scores of all retrieved documents are below the lower threshold.
+    - Seek new sources of knowledge for correction -> **web search**
+- **Ambiguous**: The accuracy of the retrieval is hard to distinguish and the evaluator gives an intermediate score.
+    - Both types of processed knowledge in `Correct` and `Incorrect` are combined to complement each other
+
+**Knowledge Refinement**
+- If a retrieved result is as short as one or two sentences: it is regarded as an individual strip
+- Otherwise:
+    - retrieval documents are required to be split into smaller units
+    - The retrieval evaluator finetuned is employed to calculate the relevance score of each knowledge strip
+    - Irrelevant knowledge strips are filtered out, while relevant ones are recomposed via concatenation in order -> **internal knowledge**
+
+**Web Search**
+The inputs are rewritten into queries composed of keywords by ChatGPT to mimic the daily usage of search engine. utilize the URL links to navigate web pages, transcribe their content, and employ the same knowledge refinement method
 <!-- Content_END -->

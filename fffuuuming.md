@@ -345,4 +345,72 @@ Based on the aforementioned confidence score for each retrieved document, three 
 
 **Web Search**
 The inputs are rewritten into queries composed of keywords by ChatGPT to mimic the daily usage of search engine. utilize the URL links to navigate web pages, transcribe their content, and employ the same knowledge refinement method
+
+### 2025.06.13
+[AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation](https://huggingface.co/papers/2308.08155)
+---
+**Motivation**: 
+
+Prior work suggests that multiple agents can help encourage divergent thinking, improve factuality and reasoning, and provide validation
+-> **how to facilitate the development of LLM applications based on the multi-agent approach ?**
+
+**Idea: multi-agent conversations**
+
+There are 3 reasons:
+1. LLMs' ability to incorporate feedback
+    - LLM agents can cooperate through conversations with each other or human(s)
+2. single LLM can exhibit a broad range of capabilities
+    - Conversations between differently configured agents can help combine broad LLM capabilities in a **modular** and **complementary** manner
+3. LLM's ability to solve complex tasks when the tasks are broken into simpler subtasks
+
+But, there's still some problems to be solved:
+1. How to **design individual agents** that are capable, reusable, customizable, and effective in multi-agent collaboration
+2. How to develop a straightforward, **unified interface** that can accommodate a wide range of agent conversation patterns
+    - Applications of varying complexities may need distinct sets of agents with 
+        - specific capabilities
+        - different conversation patterns (single- or multi-turn dialogs)
+        - different human involvement modes
+        - static vs. dynamic conversation
+    - developers may prefer the flexibility to program agent interactions in natural language or code
+
+To address this, it proposes:
+**AutoGen: generalized multi-agent conversation framework**
+
+
+
+With two key concepts
+1. **Customizable and conversable agents**:
+Leverages the strong capability of the most advanced LLMs in taking feedback and making progress via chat and also allows combining capabilities of LLMs in a modular fashion
+2. **Conversation programming**:
+Simplify and unify complex LLM application workflows as multi-agent conversations
+    - Can be achieved via a fusion of natural and pro- gramming languages
+    - Easy extension and experimentation
+
+Framework Overview:
+![截圖 2025-06-13 晚上10.42.19](https://hackmd.io/_uploads/B1_lFnK7ll.png)
+
+---
+**The $\mathrm{AutoGen}$ Framework**
+![截圖 2025-06-13 晚上10.45.03](https://hackmd.io/_uploads/SJCOFhKQle.png)
+#### Conversable Agents:  entity with a specific role & capabilities
+Agent capabilities can be powered by
+- LLMs
+- Humans
+- Tools
+
+Moreover, agnets can be **customized** and **cooperated**
+- `ConversableAgent`: The highest-level agent abstraction and, by default, can use LLMs, humans, and tools
+    - `AssistantAgent`, `UserProxyAgent`: two pre-configured `ConversableAgent` subclasses, each representing a common usage mode, (i.e., acting as an AI assistant (backed by LLMs) and acting as a human proxy to solicit human input or execute code/function calls (backed by humans and/or tools))
+- LLM-backed assistant agent and a tool- and human-backed user proxy agent are deployed together to tackle a task.
+    - Assistant agent generates a solution with the help of LLMs and passes the solution to the user proxy agent
+    - User proxy agent solicits human inputs or executes the assistant’s code and passes the results as feedback back to the assistant.
+#### Conversation Programming: make developers able to specify and mold these multi-agent conversations
+- **Computation** = what each agent does in response to a message (e.g., runs code, calls LLM, replies)
+    - conversation-centric:
+- **Control Flow** = when and how these actions happen, and who talks to whom next.
+    - conversation-driven: functions of the inter-agent conversation
+
+1. Unified interfaces and auto-reply mechanisms for automated agent chat
+2. Control by fusion of programming and natural language.
+
 <!-- Content_END -->

@@ -412,5 +412,51 @@ Moreover, agnets can be **customized** and **cooperated**
 
 1. Unified interfaces and auto-reply mechanisms for automated agent chat
 2. Control by fusion of programming and natural language.
+### 2025.06.14
+[Autonomous Evaluation and Refinement of Digital Agents](https://arxiv.org/abs/2404.06474)
+---
+**Motivation**
+It's important to evaluate agents' performance and refine based on it
 
+**Solution**
+Propose a to domain-general neural models to automatically evaluate user instructions and arbitrary agent trajectories, with two approaches offering trade-offs in inference cost, modularity of design, performance and transparency.
+
+1. Modular caption-then-reason approach"
+    - vision-language model (**VLM**) first captions the screenshots and generate a language-based description
+    - Language model (LM) is used to reason about if an agent succeeds based on textual information
+2. End-to-end approach:
+Prompt an advanced VLM like GPT-4V to directly evaluate a trajectory
+
+**Advantage**
+Domain-general evaluation models can support the **autonomous evaluation and refinement of digital agents**, without requiring access to human demonstrations or oracle evaluation metrics
+
+**Method Overview**
+![截圖 2025-06-14 晚上8.46.02](https://hackmd.io/_uploads/H1_Mylsmlg.png)
+- Evaluation of a digital agent’s trajectory
+- Reward function for [Reflexion](https://arxiv.org/abs/2303.11366)
+- Filtered behavior cloning to enhance model performance
+---
+**Domain-General Evaluators**
+
+Given a user instruction $x$ and an initial environment state $s_0$, an agent generates and executes a sequence of actions $\bar{a} = ⟨a_0,a_1,...,a_n⟩$, resulting in a sequence of state visits $\bar{s} = ⟨s_0,s_1,s_2,...,s_{n+1}⟩$.
+- assume $a$ and $x$ are in text form
+- $s$ is represented as a screenshot image
+
+How do it evaluate ? Given  $x$, $\bar{a}$, $\bar{s}$ as input, the model produces a scalar evaluation $\bar{r} = ⟨r_0, r_1, . . . , r_n⟩$ corresponding to each step of the trajectory. It can hence provide either trajectory-level or per-step evaluations
+
+1. **End-to-End Approach**
+Provide an instruction-tuned VLM (GPT-4V) with $x$, $\bar{a}$ and $\bar{s}$, prompt it to first produce a **text-based reasoning process** then output its **evaluation result**
+    - expensive
+2. **Modular Caption-then-Reason Approach**
+First use a VLM to produce a description of the agent’s observations given as $\bar{s}$ , then feed these descriptions, along with actions $\bar{a}$ and the user’s instruction $x$ to an LM to produce a final evaluation  
+
+
+    **Captioner**
+    To deal with potential information loss, it constructs a dataset and use it to fine-tune QWen-VL-chat (Bai et al., 2023) model by
+    - acquires screenshots from a variety web and device control domains
+    - use GPT-4V to provide an initial detailed description for each screenshot
+    - manually filter out or fix apparent errors in GPT-4V’s output, resulting a total of 1,263 data points.
+
+    **Reasoner**
+ Provide the actions, generated descriptions, and the original user instruction to a language-only instruction-tuned model to produce a text-based thought and reasoning process as well as the final evaluation.
 <!-- Content_END -->

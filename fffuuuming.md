@@ -509,6 +509,7 @@ Forward Propagation:
         >the function representing the `agent` u’s attribute
 - Analogous to $h_u^{(k)} = \text{AGG}u \left(h_u^{(k-1)}, \text{MSG}{a,d} \right)$, but in **text space**, using **LLMs as aggregation functions**
 
+
 $\mathbf{h}_u^{(k)} = f_u\left(\left[\mathbf{h}_u^{(k-1)}, \left\{ f_a\left([\mathbf{h}_a^{(k-1)}, \mathbf{h}u^{(k-1)}, \mathbf{h}d^{(k-1)}]\right) \mid (u,a) \in \mathcal{E}{aa}, (u,d) \in \mathcal{E}{ad} \right\} \right] \right)$
 
 `data`: Update the `data` node $v$’s hidden state using:
@@ -517,6 +518,7 @@ $\mathbf{h}_u^{(k)} = f_u\left(\left[\mathbf{h}_u^{(k-1)}, \left\{ f_a\left([\ma
 - Each message is processed by an agent function $f_a$,
 - The global function $f_g$ (not personalized) performs final aggregation.
 - Correspond to $h_v^{(k)} = \text{AGG}g \left(h_v^{(k-1)}, \text{MSG}{a,d} \right)$, where $f_g$ acts like a global aggregator without any specialization.
+
 
 $\mathbf{h}_v^{(k)} = f_g\left(\left[\mathbf{h}_v^{(k-1)}, \left\{ f_a\left([\mathbf{h}_a^{(k-1)}, \mathbf{h}v^{(k-1)}, \mathbf{h}d^{(k-1)}]\right) \mid (v,a) \in \mathcal{E}{ad}, (v,d) \in \mathcal{E}{dd} \right\} \right] \right)$
 

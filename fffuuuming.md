@@ -459,4 +459,84 @@ First use a VLM to produce a description of the agent’s observations given as 
 
     **Reasoner**
  Provide the actions, generated descriptions, and the original user instruction to a language-only instruction-tuned model to produce a text-based thought and reasoning process as well as the final evaluation.
+### 2025.06.15
+[ResearchTown: Simulator of Human Research Community](https://github.com/ulab-uiuc/research-town)
+---
+**Intention**: Can we simulate human research communities with LLMs ?
+
+**Proposed RESEARCHTOWN**: A multi-agent, graph-based framework works as a simulator for research community
+- **Agent-data graph**
+    - 2 types of nodes: `agent`, `data` (papers, reviews, blogs...). An `agent` node can be considered a function over `data` nodes
+    - 3 types of edges: `agent-agent` (reviewing expertise), `data-data` (paper citations), `agent-data` (authorship)
+- **TextGNN**: Text-based inference framework that models various research activities (e.g., paper reading, paper writing, and review writing)
+    - message-passing processes are defined based on text-form information processing with LLMs
+- **Node-masking prediction task** for evaluation: similarity-based, how closely simulator's outputs align with those of the real-world research community
+
+a research community can be regarded as a special form of agent-data graph, called community graph, with research agents and research papers as two types of nodes, and we consider three types of edges (review, au- thor, and cite) in the graph. Different community activities, such as paper writing and review writing, can be modeled as special message-passing processes on the community graph
+
+Community Graph
+![截圖 2025-06-15 下午2.46.21](https://hackmd.io/_uploads/rJpS2JhXlx.png)
+
+---
+#### Agent-Data Graph for Multi-agent LLMs
+$\mathcal{G} = (\mathcal{V}, \mathcal{E})$ , $\mathcal{V} = \mathcal{V}_a \cup \mathcal{V}_d$ , $\mathcal{E} = \mathcal{E}_{aa} \cup \mathcal{E}_{ad} \cup \mathcal{E}_{dd}$ (agent-agent, data-data, agent-data)
+- Each `data` node $v$ ∈ $\mathcal{V}_d$ comes with attributes, e.g., **a piece of text**, $x_v$
+- Each `agent` node $u$ is accompanied with an **agent function**: an $\mathrm{LLM} \space f_u(·)$ with its prompt template and the profile
+    - for message generation and message aggregation
+    - takes $x_v$ from $v$ ∈ $\mathcal{V}_d$ as the input, and output new data based on its profile prompt $\mathbf{x}_u$, e.g., $\mathbf{x_{uv}} = f_u([\mathbf{x}_u,\mathbf{x}_v])$, where [·] indicates filling the prompt template with $x_u$ and $x_v$
+---
+#### Building TextGNN on Agent-Data Graphs
+We need to use LLMs to generate new data and interactions on the agent-data graph, and TextGNN serves as a **text-based message-passing mechanism** on an agent-data graph
+
+What's the difference from standard vanilla GNN ?
+- All hidden states are defined in the **text space**. e.g. $h_v ∈ \mathrm{Σ∗}$
+- Heterogeneous nodes: `agent` & `data`
+- Typed edges: `agent-agent`, `agent-data`, `data-data`
+
+**Technical detail**
+
+Initial hidden states: 
+- `data` nodes: $h^{(0)}_v = x_v$,
+- `agent` nodes: $h^{(0)}_u = ∅$
+
+Forward Propagation:
+
+`agent`: Update the `agent` node $u$’s hidden state using:
+- Its own prior state $\mathbf{h}_u^{(k-1)}$
+- Messages from neighboring `agents` $a$ and `data` $d$, where:
+    - $f_a$: agent function for neighbor $a$ encodes the triple $(a,u,d)$,
+    - All messages are concatenated and passed to $f_u$
+        >the function representing the `agent` u’s attribute
+- Analogous to $h_u^{(k)} = \text{AGG}u \left(h_u^{(k-1)}, \text{MSG}{a,d} \right)$, but in **text space**, using **LLMs as aggregation functions**
+
+$\mathbf{h}_u^{(k)} = f_u\left(\left[\mathbf{h}_u^{(k-1)}, \left\{ f_a\left([\mathbf{h}_a^{(k-1)}, \mathbf{h}u^{(k-1)}, \mathbf{h}d^{(k-1)}]\right) \mid (u,a) \in \mathcal{E}{aa}, (u,d) \in \mathcal{E}{ad} \right\} \right] \right)$
+
+`data`: Update the `data` node $v$’s hidden state using:
+- Its prior state $\mathbf{h}_v^{(k-1)}$
+- Messages from `agent` neighbors $a$ and other `data` nodes $d$
+- Each message is processed by an agent function $f_a$,
+- The global function $f_g$ (not personalized) performs final aggregation.
+- Correspond to $h_v^{(k)} = \text{AGG}g \left(h_v^{(k-1)}, \text{MSG}{a,d} \right)$, where $f_g$ acts like a global aggregator without any specialization.
+
+$\mathbf{h}_v^{(k)} = f_g\left(\left[\mathbf{h}_v^{(k-1)}, \left\{ f_a\left([\mathbf{h}_a^{(k-1)}, \mathbf{h}v^{(k-1)}, \mathbf{h}d^{(k-1)}]\right) \mid (v,a) \in \mathcal{E}{ad}, (v,d) \in \mathcal{E}{dd} \right\} \right] \right)$
+
+Simple Comparison Summary:
+
+
+| GNN Component | TextGNN Equivalent |
+| -------- | -------- |
+| Node hidden state         | Text string or summary via LLM         |
+| MSG function         | $f_a$: agent-specific message constructor         |
+| AGG function         | $f_u$, $f_g$: LLM-based aggregators         |
+| Neighborhood types     | $\mathcal{E}_{aa} ,  \mathcal{E}_{ad} ,  \mathcal{E}_{dd}$    |
+
+#### RESEARCHTOWN: Applying TextGNN to Community Graph
+Overall, the simulation algorithm can be considered as a 2-layer GNN where the paper reading is the first layer of information aggregation. Both paper writing and review writing are the second layer of the GNN to generate the final simulation outputs, as the following shown:
+
+Simulation Overview: Three stages proccess
+![截圖 2025-06-15 下午4.01.39](https://hackmd.io/_uploads/SkIWCxnQlx.png)
+1. **Paper reading**: 
+2. **Paper writing**
+3. **Review writing**
+
 <!-- Content_END -->

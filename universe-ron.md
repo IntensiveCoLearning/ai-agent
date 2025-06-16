@@ -197,12 +197,20 @@ timezone: UTC+8
 - 可以和現有的 RAG 或 Self-RAG 模型搭配使用
 
 ### 2025.06.14
+[AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation Framework](https://huggingface.co/papers/2308.08155)
+
 
 ### 2025.06.15
+[CAMEL: Communicative Agents for "Mind" Exploration of Large Language Model Society](https://arxiv.org/abs/2303.17760)
+
 
 ### 2025.06.16
+[Autonomous Evaluation and Refinement of Digital Agents](https://arxiv.org/abs/2404.06474)
+
 
 ### 2025.06.17
+[Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference](https://arxiv.org/abs/2403.04132)
+
 
 ### 2025.06.18
 

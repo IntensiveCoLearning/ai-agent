@@ -541,4 +541,10 @@ Simulation Overview: Three stages proccess
 2. **Paper writing**
 3. **Review writing**
 
+### 2025.06.16
+[If LLM Is the Wizard, Then Code Is the Wand: A Survey on How Code Empowers Large Language Models to Serve as Intelligent Agents](https://arxiv.org/abs/2401.00812)
+---
+一篇對於 "**how code assists LLMs and where code benefits LLMs as IAs**" 整理的非常詳盡的清單，架構如下圖：
+![截圖 2025-06-16 晚上10.37.16](https://hackmd.io/_uploads/rJD4no6Qlx.png)
+除了 related LLMs to Physical Ends 以外其他都還算有興趣，有空會看個大概
 <!-- Content_END -->

@@ -310,9 +310,10 @@ Use a light weight **retrieval evaluator** to assess the overall quality of retr
 
 **Advantage**:
 - plug-and-play, which can be integrated into other off-the-shell models such as **RAG**, **self-RAG**
----
+
 **Method Overview**
 ![截圖 2025-06-12 晚上9.32.39](https://hackmd.io/_uploads/SyBfvLd7gx.png)
+
 ----
 **Retrieval Evaluator: Is this retrieved document relevant to the question?**
 Fine-tuned a lightweight model **T5-large** to score how relevant a document is to a question.

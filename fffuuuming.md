@@ -599,4 +599,27 @@ pPompt engineering occurs solely at the beginning of role-playing, for task spec
 Three prompts:
 - $\mathcal{P_{T}}$: task specifier prompt, contains information about the roles of the AI assistant and AI user in the role-playing session
 - $\mathcal{P_{A}}$, $\mathcal{P_{U}}$: contain info of assigned task and roles, communication protocols, termination conditions, and constraints or requirements to avoid unwanted behaviors
+### 2025.06.19
+[SELF-RAG: LEARNING TO RETRIEVE, GENERATE, AND CRITIQUE THROUGH SELF-REFLECTION](https://arxiv.org/pdf/2310.11511)
+---
+**Motivation**: 
+Resolve the **Hallucinations** from vanilla LLMs and disadvantage of vanilla RAG (**indiscriminately** retrieving and incorporating a **fixed number** of retrieved passages, **regardless of whether retrieval is necessary, or passages are relevant**)
+
+**Solution**: Self-Reflective Retrieval-Augmented Gen- eration (SELF-RAG)
+Two key concept: **demanded retrieva**l & **self-reflection**, specifically, it trains a single arbitrary LM that **adaptively retrieves passages on-demand**, and generates and reflects on retrieved passages and its own generations using **reflection tokens**.
+
+**Advantage**
+- significant gains in improving factuality and citation accuracy for long-form generations
+- Generating reflection tokens makes the LM controllable during the inference phase, enabling it to tailor its behavior to diverse task requirements
+- It leverages **Knowledge Distillation** by first prompting GPT-4 to predict an appropriate reflection token as training data, then train critic model $C$ on it, finally update the training corpus by inserting reflection tokens into task outputs offline, this offline approach reduce the training cost
+
+**SELF-RAG Overview**
+![截圖 2025-06-19 晚上9.11.30](https://hackmd.io/_uploads/rJLqnKZ4xe.png)
+
+---
+Type of reflection tokens
+![截圖 2025-06-19 晚上10.31.29](https://hackmd.io/_uploads/SJoO1i-Nll.png)
+Workflow
+![截圖 2025-06-19 晚上10.39.26](https://hackmd.io/_uploads/r1OEZjbEgx.png)
+
 <!-- Content_END -->

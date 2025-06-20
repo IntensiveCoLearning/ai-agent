@@ -621,5 +621,49 @@ Type of reflection tokens
 ![截圖 2025-06-19 晚上10.31.29](https://hackmd.io/_uploads/SJoO1i-Nll.png)
 Workflow
 ![截圖 2025-06-19 晚上10.39.26](https://hackmd.io/_uploads/r1OEZjbEgx.png)
+### 2025.06.20
+[VOYAGER: An Open-Ended Embodied Agent with Large Language Models](https://voyager.minedojo.org)
+---
+**Motivation** Build an embodied agent that:
+- Explores, plans, and learns autonomously in an open-ended environment.
+- Can accumulate and transfer knowledge over long time spans like a human.
+- Performs lifelong learning: acquiring increasingly complex skills without human intervention.
 
+**Limitations of Prior SOTA**
+| Approach | Limitation |
+| -------- | -------- |
+| RL / Imitation learning         |Works on low-level actions; struggles with long-horizon planning and generalization.          |
+| LLM Agents (ReAct, Reflexion, AutoGPT)         |   Not designed for lifelong learning; lack mechanisms for knowledge retention and reuse.       |
+| Embodied Agents     | Typically lack compositional skill reuse, error recovery, and self-directed exploration     |
+
+**Solution: LLM-powered lifelong embodied agent**
+
+Three key components:
+- **Automatic curriculum**: Explores autonomously, proposes its own tasks, and refines skills based on outcomes.
+- **Skill library**: storing and retrieving complex behaviors
+- **Iterative prompting mechanism**: generates executable code for embodied control
+
+Other approaches:
+- Uses **code** as action space: allowing for high-level, temporally extended behavior
+- Interacts with GPT-4 as a black-box LLM: no fine-tuning or gradient updates needed.
+---
+**Framework & Workflow Overview**
+![截圖 2025-06-20 晚上10.36.37](https://hackmd.io/_uploads/SyHMzlXEgl.png)
+#### Automatic Curriculum
+![截圖 2025-06-20 晚上11.03.40](https://hackmd.io/_uploads/rJc8OgQ4le.png)
+#### Skill Library
+![截圖 2025-06-20 晚上11.04.13](https://hackmd.io/_uploads/H1sddl7Vlx.png)
+#### Iterative Prompting Mechanism
+![截圖 2025-06-20 晚上11.05.12](https://hackmd.io/_uploads/BkS2uxm4xx.png)
+![截圖 2025-06-20 晚上11.05.36](https://hackmd.io/_uploads/r1A6ueQVel.png)
+
+**Summary Advantage**:
+| Column 1 | Column 2 |
+| -------- | -------- |
+| Automatic Task Generation         | Curriculum is dynamically created based on agent state, not predefined         |
+| Lifelong Learning        | Continuously accumulates skills without forgetting or retraining         |
+| Skill Reuse & Composition        | Builds complex behavior from smaller verified programs.         |
+| Self-Verification         | Automates success/failure assessment and correction logic.         |
+| Code-as-Policy         | Code is modular, interpretable, composable, and temporally extended.         |
+| Black-Box LLM Use     | No model finetuning required. Uses GPT-4 API only     |
 <!-- Content_END -->

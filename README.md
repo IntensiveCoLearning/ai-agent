@@ -196,10 +196,11 @@ Telegram：https://t.me/LXDAO/24843
 | [shendongyang05](https://github.com/IntensiveCoLearning/ai-agent/blob/main/shendongyang05.md) | ⭕️ | ⭕️ | ⭕️ | ❌ | | | | | | | | | | | | | | | | | |
 | [Bitpeng-YT](https://github.com/IntensiveCoLearning/ai-agent/blob/main/Bitpeng-YT.md) | ✅ | ✅ | ✅ | ⭕️ | ⭕️ | ❌ | | | | | | | | | | | | | | | |
 | [CHENFANGC](https://github.com/IntensiveCoLearning/ai-agent/blob/main/CHENFANGC.md) | ⭕️ | ⭕️ | ⭕️ | ❌ | | | | | | | | | | | | | | | | | |
-| [fffuuuming](https://github.com/IntensiveCoLearning/ai-agent/blob/main/fffuuuming.md) | ✅ | ✅ | ⭕️ | ✅ | ✅ | ✅ | ⭕️ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ⭕️ | ✅ | ✅ |   |
+| [fffuuuming](https://github.com/IntensiveCoLearning/ai-agent/blob/main/fffuuuming.md) | ✅ | ✅ | ⭕️ | ✅ | ✅ | ✅ | ⭕️ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ⭕️ | ✅ | ✅ | ⭕️ |
 | [nocb](https://github.com/IntensiveCoLearning/ai-agent/blob/main/nocb.md) | ✅ | ✅ | ⭕️ | ⭕️ | ❌ | | | | | | | | | | | | | | | | |
 | [voidpainter](https://github.com/IntensiveCoLearning/ai-agent/blob/main/voidpainter.md) | ⭕️ | ✅ | ⭕️ | ✅ | ⭕️ | ❌ | | | | | | | | | | | | | | | |
 <!-- END_COMMIT_TABLE -->
+
 
 
 
@@ -516,5 +517,5 @@ Telegram：https://t.me/LXDAO/24843
 - 全勤用户: universe-ron
 - 淘汰人数: 12
 - 淘汰率: 85.71%
-- Fork人数: 0
+- Fork人数: 19
 <!-- STATISTICALDATA_END -->
